@@ -1,14 +1,23 @@
 <template>
     <Navbar />
 
-    <div class="d-flex">
+    <!-- <div class="d-flex">
         <div class="col-4">
             <PublicationList />
         </div>
         <div class="col">
             <router-view />
         </div>
-    </div>
+    </div> -->
+
+        <!-- <div >
+            <PublicationList />
+        </div> -->
+
+                <!-- <div > -->
+            <router-view />
+        <!-- </div> -->
+
 </template>
 
 <script>
@@ -17,7 +26,7 @@ import { defineAsyncComponent } from "vue"
 export default {
     components: {
         Navbar: defineAsyncComponent(() => import('../components/Navbar.vue')),
-        PublicationList: defineAsyncComponent(() => import('../components/PublicationList.vue'))
+        // PublicationList: defineAsyncComponent(() => import('../components/PublicationList.vue'))
     }
 }
 </script>

@@ -13,5 +13,4 @@ const publicationModule = {
     state
 }
 
-
 export default publicationModule
