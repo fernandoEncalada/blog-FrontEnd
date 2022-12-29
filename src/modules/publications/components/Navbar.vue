@@ -26,9 +26,9 @@
         Create publication
       </button>
 
-      <button class="btn btn-outline-info mx-2">
+      <!-- <button class="btn btn-outline-info mx-2">
         <i class="fa fa-sign-out-alt"></i>
-      </button>
+      </button> -->
     </div>
   </nav>
 </template>

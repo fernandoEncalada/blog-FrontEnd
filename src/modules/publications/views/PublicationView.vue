@@ -10,8 +10,12 @@
         </div>
       </div>
       <div>
+        <p>Categoria: <b> {{ publication.category.name }} </b> </p>
+      </div>
+      
+      <div>
         <h5>{{ publication.description }}</h5>
-        <p >{{ publication.content }}</p>
+        <p>{{ publication.content }}</p>
       </div>
     </template>
 
@@ -29,6 +33,13 @@
             placeholder="Title of the publication"
             v-model="publication.title"
           />
+        </div>
+        <div class="mb-3">
+          <select class="form-select" aria-label="Default select example" @change="getCategoryId()" v-model="publication.categoryId">
+            <option selected>Select a category</option>
+            <option v-for="category in getCategories" :key="category.id" :value="category.id"
+              >{{ category.name }}</option>
+          </select>
         </div>
         <div class="mb-3">
           <label for="exampleFormControlInput1" class="form-label"
@@ -92,12 +103,13 @@ export default {
   },
   data() {
     return {
-      publication: null,
+      publication: null
     };
   },
 
   computed: {
     ...mapGetters("publication", ["getPublicationById"]),
+    ...mapGetters("category", ["getCategories"]),
     // day() {
     //   const { day } = getDayMonthYear(this.publication.date);
     //   return day;
@@ -115,8 +127,14 @@ export default {
     ...mapActions("publication", [
       "updatePublication",
       "createPublication",
-      "deletePublication",
+      "deletePublication"
     ]),
+    ...mapActions("category", [
+      "loadCategories",
+    ]),
+    getCategoryId(){
+      console.log(this.categoryId);
+    },
     loadPublication() {
       let publication;
       if (this.id === "new") {
@@ -125,6 +143,7 @@ export default {
           description: "",
           content: "",
           comments: [],
+          categoryId: ""
         };
       } else {
         publication = this.getPublicationById(this.id);
@@ -188,6 +207,8 @@ export default {
 
   created() {
     this.loadPublication();
+    this.loadCategories();
+    console.log("categories: ", this.getCategories);
   },
 
   watch: {

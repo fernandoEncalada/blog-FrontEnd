@@ -31,10 +31,10 @@ export const updatePublication = async ({ commit }, publication) => {
 }
 
 export const createPublication = async ({ commit }, publication) =>{
-    const { title, description, content, comments } = publication
-    const publicationToSave = { title, description, content, comments }
+    const { title, description, content, comments, categoryId } = publication
+    const publicationToSave = { title, description, content, comments, categoryId }
 
-    const { data } = await publicationApi.post('/publications/2', publicationToSave)
+    const { data } = await publicationApi.post('/publications/1', publicationToSave)
     
     publicationToSave.id = data.id
     commit('addPublication', publicationToSave)
