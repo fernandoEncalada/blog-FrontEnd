@@ -4,7 +4,6 @@
 // }
 
 export const setCategories = ( state, categories ) => {
-    console.log("categories: ", categories);
     state.categories = []
     state.categories = [ ...state.categories, ...categories ]
 }
@@ -14,9 +13,9 @@ export const setCategories = ( state, categories ) => {
 //     state.publications[idx] = publication
 // }
 
-// export const addPublication = ( state, publication ) => {
-//     state.publications = [ publication, ...state.publications ]
-// }
+export const addCategory = ( state, category ) => {
+    state.categories = [ category, ...state.categories ]
+}
 
 // export const deletePulication = ( state, id ) => {
 //     state.publications = state.publications.filter(publication => publication.id !== id)

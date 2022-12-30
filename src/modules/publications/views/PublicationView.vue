@@ -10,9 +10,11 @@
         </div>
       </div>
       <div>
-        <p>Categoria: <b> {{ publication.category.name }} </b> </p>
+        <p>
+          Categoria: <b> {{ publication.category.name }} </b>
+        </p>
       </div>
-      
+
       <div>
         <h5>{{ publication.description }}</h5>
         <p>{{ publication.content }}</p>
@@ -34,13 +36,37 @@
             v-model="publication.title"
           />
         </div>
-        <div class="mb-3">
-          <select class="form-select" aria-label="Default select example" @change="getCategoryId()" v-model="publication.categoryId">
+
+        <div class="input-group mb-3">
+          <select
+            class="form-control"
+            aria-label="Default select example"
+            aria-describedby="button-addon2"
+            @change="getCategoryId()"
+            v-model="publication.categoryId"
+          >
             <option selected>Select a category</option>
-            <option v-for="category in getCategories" :key="category.id" :value="category.id"
-              >{{ category.name }}</option>
+            <option
+              v-for="category in getCategories"
+              :key="category.id"
+              :value="category.id"
+            >
+              {{ category.name }}
+            </option>
           </select>
+          <button
+            class="btn btn-outline-secondary"
+            type="button"
+            id="button-addon2"
+            data-bs-toggle="modal"
+            data-bs-target="#newCategoryModal"
+          >
+            Create category
+          </button>
         </div>
+
+        
+
         <div class="mb-3">
           <label for="exampleFormControlInput1" class="form-label"
             >Publication Description</label
@@ -103,7 +129,7 @@ export default {
   },
   data() {
     return {
-      publication: null
+      publication: null,
     };
   },
 
@@ -127,12 +153,10 @@ export default {
     ...mapActions("publication", [
       "updatePublication",
       "createPublication",
-      "deletePublication"
+      "deletePublication",
     ]),
-    ...mapActions("category", [
-      "loadCategories",
-    ]),
-    getCategoryId(){
+    ...mapActions("category", ["loadCategories"]),
+    getCategoryId() {
       console.log(this.categoryId);
     },
     loadPublication() {
@@ -143,7 +167,7 @@ export default {
           description: "",
           content: "",
           comments: [],
-          categoryId: ""
+          categoryId: "",
         };
       } else {
         publication = this.getPublicationById(this.id);

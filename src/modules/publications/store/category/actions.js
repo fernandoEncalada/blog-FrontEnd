@@ -24,16 +24,16 @@ export const loadCategories = async ({ commit }) => {
 
 // }
 
-// export const createPublication = async ({ commit }, publication) =>{
-//     const { title, description, content, comments } = publication
-//     const publicationToSave = { title, description, content, comments }
+export const createCategory = async ({ commit }, category) =>{
+    const { name } = category
+    const categoryToSave = { name }
 
-//     const { data } = await publicationApi.post('/publications/2', publicationToSave)
+    await publicationApi.post('/categories', categoryToSave)
     
-//     publicationToSave.id = data.id
-//     commit('addPublication', publicationToSave)
-//     return data.id
-// }
+    // publicationToSave.id = data.id
+    commit('addCategory', categoryToSave)
+    // return data.id
+}
 
 // export const deletePublication = async ({ commit }, id) => {
 
